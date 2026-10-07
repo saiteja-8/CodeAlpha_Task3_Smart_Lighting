@@ -1,0 +1,284 @@
+{
+  "format": "velxio-project",
+  "version": 1,
+  "exportedAt": "2026-10-07T15:21:34.552Z",
+  "boards": [
+    {
+      "id": "arduino-uno",
+      "boardKind": "arduino-uno",
+      "x": -101,
+      "y": 75,
+      "activeFileGroupId": "group-arduino-uno",
+      "languageMode": "arduino",
+      "serialBaudRate": 9615
+    }
+  ],
+  "fileGroups": {
+    "group-arduino-uno": [
+      {
+        "name": "sketch.ino",
+        "content": "const int pirPin = 2;\nconst int ldrPin = A0;\nconst int ledPin = 9;\n\nint lightThreshold = 50;\n\nvoid setup() {\n  pinMode(pirPin, INPUT);\n  pinMode(ledPin, OUTPUT);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int motion = digitalRead(pirPin);\n  int lightValue = analogRead(ldrPin);\n\n  Serial.print(\"LDR: \");\n  Serial.print(lightValue);\n  Serial.print(\"  PIR: \");\n  Serial.println(motion);\n\n  if (motion == HIGH && lightValue < lightThreshold) {\n    digitalWrite(ledPin, HIGH);\n  } else {\n    digitalWrite(ledPin, LOW);\n  }\n\n  delay(200);\n}"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "led_builtin",
+      "metadataId": "led",
+      "x": 380,
+      "y": 100,
+      "properties": {
+        "color": "red"
+      }
+    },
+    {
+      "id": "r_builtin",
+      "metadataId": "resistor",
+      "x": 247,
+      "y": 89,
+      "properties": {
+        "value": "220"
+      }
+    },
+    {
+      "id": "pir_motion_sensor_1791385707446_sk4m8mw5l",
+      "metadataId": "pir-motion-sensor",
+      "x": -172.89999389648438,
+      "y": -157.8000144958496,
+      "properties": {}
+    },
+    {
+      "id": "photoresistor_sensor_1791385921975_109m27p59",
+      "metadataId": "photoresistor-sensor",
+      "x": -199.89999389648438,
+      "y": 342.1999855041504,
+      "properties": {
+        "ledDO": false,
+        "ledPower": false,
+        "lux": 1000
+      }
+    }
+  ],
+  "wires": [
+    {
+      "id": "wire_builtin_anode",
+      "start": {
+        "componentId": "r_builtin",
+        "pinName": "2",
+        "x": 311.8,
+        "y": 100.65
+      },
+      "end": {
+        "componentId": "led_builtin",
+        "pinName": "A",
+        "x": 411,
+        "y": 148
+      },
+      "waypoints": [],
+      "color": "#22c55e"
+    },
+    {
+      "id": "wire-1791385714788",
+      "start": {
+        "componentId": "pir_motion_sensor_1791385707446_sk4m8mw5l",
+        "pinName": "VCC",
+        "x": -130.72199389648438,
+        "y": -59.80001449584961
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "5V",
+        "x": 59,
+        "y": 266.5
+      },
+      "waypoints": [
+        {
+          "x": -133.10000610351562,
+          "y": -59.80001449584961
+        },
+        {
+          "x": -133.10000610351562,
+          "y": 304.39998626708984
+        },
+        {
+          "x": 59,
+          "y": 304.39998626708984
+        }
+      ],
+      "color": "#cc0000",
+      "autoRouted": false
+    },
+    {
+      "id": "wire-1791385737834",
+      "start": {
+        "componentId": "pir_motion_sensor_1791385707446_sk4m8mw5l",
+        "pinName": "GND",
+        "x": -111.25849389648437,
+        "y": -59.80001449584961
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "GND.3",
+        "x": 78,
+        "y": 266.5
+      },
+      "waypoints": [
+        {
+          "x": -114.10000610351562,
+          "y": -59.80001449584961
+        },
+        {
+          "x": -114.10000610351562,
+          "y": 322.39998626708984
+        },
+        {
+          "x": 78,
+          "y": 322.39998626708984
+        }
+      ],
+      "color": "#000000",
+      "autoRouted": false
+    },
+    {
+      "id": "wire-1791385863849",
+      "start": {
+        "componentId": "pir_motion_sensor_1791385707446_sk4m8mw5l",
+        "pinName": "OUT",
+        "x": -120.98249389648439,
+        "y": -59.80001449584961
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "2",
+        "x": 135.5,
+        "y": 84
+      },
+      "waypoints": [
+        {
+          "x": 135.5,
+          "y": -59.80001449584961
+        }
+      ],
+      "color": "#22c55e",
+      "autoRouted": true
+    },
+    {
+      "id": "wire-1791385887113",
+      "start": {
+        "componentId": "r_builtin",
+        "pinName": "1",
+        "x": 253,
+        "y": 100.65
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "13",
+        "x": 24,
+        "y": 84
+      },
+      "waypoints": [
+        {
+          "x": 18.899993896484375,
+          "y": 141.65
+        },
+        {
+          "x": 18.899993896484375,
+          "y": 84
+        }
+      ],
+      "color": "#22c55e",
+      "autoRouted": false
+    },
+    {
+      "id": "wire-1791385977160",
+      "start": {
+        "componentId": "photoresistor_sensor_1791385921975_109m27p59",
+        "pinName": "VCC",
+        "x": -21.899993896484375,
+        "y": 364.1999855041504
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "5V",
+        "x": 59,
+        "y": 266.5
+      },
+      "waypoints": [
+        {
+          "x": 56.899993896484375,
+          "y": 364.1999855041504
+        },
+        {
+          "x": 56.899993896484375,
+          "y": 266.5
+        }
+      ],
+      "color": "#cc0000",
+      "autoRouted": false
+    },
+    {
+      "id": "wire-1791385980819",
+      "start": {
+        "componentId": "photoresistor_sensor_1791385921975_109m27p59",
+        "pinName": "GND",
+        "x": -21.899993896484375,
+        "y": 374.1999855041504
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "GND.2",
+        "x": 68.5,
+        "y": 266.5
+      },
+      "waypoints": [
+        {
+          "x": 68.5,
+          "y": 374.1999855041504
+        }
+      ],
+      "color": "#000000",
+      "autoRouted": true
+    },
+    {
+      "id": "wire-1791385991107",
+      "start": {
+        "componentId": "photoresistor_sensor_1791385921975_109m27p59",
+        "pinName": "AO",
+        "x": -21.899993896484375,
+        "y": 393.6999855041504
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "A0",
+        "x": 107,
+        "y": 266.5
+      },
+      "waypoints": [
+        {
+          "x": 107,
+          "y": 393.6999855041504
+        }
+      ],
+      "color": "#22c55e",
+      "autoRouted": true
+    },
+    {
+      "id": "wire_builtin_cathode",
+      "start": {
+        "componentId": "led_builtin",
+        "pinName": "C",
+        "x": 401,
+        "y": 148
+      },
+      "end": {
+        "componentId": "arduino-uno",
+        "pinName": "GND.1",
+        "x": 14.5,
+        "y": 84
+      },
+      "waypoints": [],
+      "color": "#000000"
+    }
+  ],
+  "activeBoardId": "arduino-uno"
+}
